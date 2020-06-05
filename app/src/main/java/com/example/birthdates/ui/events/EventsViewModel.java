@@ -1,16 +1,16 @@
-package com.example.birthdates.ui.dashboard;
+package com.example.birthdates.ui.events;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class DashboardViewModel extends ViewModel {
+public class EventsViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public DashboardViewModel() {
+    public EventsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is dashboard fragment");
+        mText.setValue("Events from ViewModel");
     }
 
     public LiveData<String> getText() {
