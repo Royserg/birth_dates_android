@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,11 +19,13 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.birthdates.ui.SettingsActivity;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
     private BottomAppBar bottomAppBar;
     private Toolbar topToolbar;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +35,14 @@ public class MainActivity extends AppCompatActivity {
         bottomAppBar = findViewById(R.id.bottom_app_bar);
         topToolbar = findViewById(R.id.top_toolbar);
 
+        fab = findViewById(R.id.fab);
+        fab.setOnClickListener(this::onFabPressed);
+
         // Setting menu in the bottom app bar
         setSupportActionBar(bottomAppBar);
         setSupportActionBar(topToolbar);
         // Remove toolbar title
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         initializeNavigation();
     }
@@ -81,6 +87,12 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(bottomNav, navController);
+    }
+    
+    public void onFabPressed(View view) {
+//        Snackbar.make(view, "FAB Pressed", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show();
+        Toast.makeText(this, "FAB Pressed toast", Toast.LENGTH_SHORT).show();
     }
 
 }

@@ -71,6 +71,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
+            android:onClick="onFabPressed"
             android:src="@drawable/ic_add_24"
             app:backgroundTint="@color/colorPrimary"
             app:layout_anchor="@id/bottom_app_bar" />
