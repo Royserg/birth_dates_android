@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_login"
-        android:name="com.example.birthdates.ui.login.LoginFragment"
+        android:name="com.example.birthdates.ui.screens.login.LoginFragment"
         android:label="Login"
         tools:layout="@layout/fragment_login" />
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.birthdates.ui.people.PeopleFragment"
+        android:name="com.example.birthdates.ui.screens.people.PeopleFragment"
         android:label="@string/title_people"
         tools:layout="@layout/fragment_people" />
 

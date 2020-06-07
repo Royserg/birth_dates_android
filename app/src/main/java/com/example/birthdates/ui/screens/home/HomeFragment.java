@@ -1,4 +1,4 @@
-package com.example.birthdates.ui.home;
+package com.example.birthdates.ui.screens.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

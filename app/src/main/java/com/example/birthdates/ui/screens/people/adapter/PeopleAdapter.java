@@ -1,4 +1,4 @@
-package com.example.birthdates.ui.people.adapter;
+package com.example.birthdates.ui.screens.people.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

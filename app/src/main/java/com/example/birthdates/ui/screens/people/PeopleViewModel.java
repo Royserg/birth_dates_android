@@ -1,4 +1,4 @@
-package com.example.birthdates.ui.people;
+package com.example.birthdates.ui.screens.people;
 
 import android.os.Build;
 

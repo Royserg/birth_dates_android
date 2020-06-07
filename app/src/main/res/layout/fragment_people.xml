@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginTop="@dimen/toolbar_height"
     android:layout_marginBottom="@dimen/bottom_appbar_height"
-    tools:context=".ui.people.PeopleFragment">
+    tools:context=".ui.screens.people.PeopleFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/people_recycler_view"

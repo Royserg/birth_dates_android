@@ -1,4 +1,4 @@
-package com.example.birthdates.ui.people;
+package com.example.birthdates.ui.screens.people;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.birthdates.R;
-import com.example.birthdates.ui.people.adapter.PeopleAdapter;
+import com.example.birthdates.ui.screens.people.adapter.PeopleAdapter;
 
 public class PeopleFragment extends Fragment {
 

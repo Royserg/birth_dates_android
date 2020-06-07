@@ -1,4 +1,4 @@
-package com.example.birthdates.ui;
+package com.example.birthdates.ui.screens;
 
 import android.os.Bundle;
 

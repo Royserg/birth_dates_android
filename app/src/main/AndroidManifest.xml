@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:parentActivityName=".MainActivity"
-            android:name=".ui.SettingsActivity"
+            android:name=".ui.screens.SettingsActivity"
             android:label="Settings"></activity>
         <activity
             android:name=".MainActivity"

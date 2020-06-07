@@ -1,4 +1,4 @@
-package com.example.birthdates.ui.events;
+package com.example.birthdates.ui.screens.events;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

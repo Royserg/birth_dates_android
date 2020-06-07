@@ -1,4 +1,4 @@
-package com.example.birthdates.ui.events;
+package com.example.birthdates.ui.screens.events;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
