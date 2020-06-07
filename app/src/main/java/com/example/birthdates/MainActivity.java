@@ -32,9 +32,11 @@ public class MainActivity extends AppCompatActivity {
         bottomAppBar = findViewById(R.id.bottom_app_bar);
         topToolbar = findViewById(R.id.top_toolbar);
 
-         // Setting menu in the bottom app bar
+        // Setting menu in the bottom app bar
         setSupportActionBar(bottomAppBar);
         setSupportActionBar(topToolbar);
+        // Remove toolbar title
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         initializeNavigation();
     }
