@@ -8,10 +8,12 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.birthdates.MainActivity;
 import com.example.birthdates.R;
+import com.example.birthdates.ui.screens.people.AddEditPersonDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 public class AddBottomSheetDialog extends BottomSheetDialogFragment {
@@ -46,21 +48,19 @@ public class AddBottomSheetDialog extends BottomSheetDialogFragment {
         // Close Bottom Sheet Dialog
         dismiss();
 
-        openFullScreenDialog(FullScreenDialog.Type.PERSON);
+        openFullScreenDialog(new AddEditPersonDialog());
     }
 
     public void handleAddEventClicked(View view) {
         // Close Bottom Sheet Dialog
         dismiss();
 
-        openFullScreenDialog(FullScreenDialog.Type.EVENT);
+//        openFullScreenDialog(FullScreenDialog.Type.EVENT);
     }
 
-    private void openFullScreenDialog(FullScreenDialog.Type type) {
+    private void openFullScreenDialog(DialogFragment dialog) {
 
         FragmentTransaction ft = mainActivity.getSupportFragmentManager().beginTransaction();
-
-        FullScreenDialog dialog = new FullScreenDialog(type);
-        dialog.show(ft, FullScreenDialog.TAG);
+        dialog.show(ft, AddEditPersonDialog.TAG);
     }
 }

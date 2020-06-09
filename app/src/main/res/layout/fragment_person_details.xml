@@ -20,15 +20,17 @@
 
     <LinearLayout
         android:id="@+id/linear_layout"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:gravity="top"
+        android:orientation="vertical">
 
         <!-- Row - Name -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="96dp"
+            android:layout_marginTop="86dp"
             android:weightSum="6">
 
             <ImageView
@@ -40,11 +42,10 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_layout_name"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="32dp"
                 android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
                 android:layout_weight="5"
                 android:hint="@string/form_name_hint">
 
@@ -75,54 +76,25 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_layout_bday"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="32dp"
                 android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
                 android:layout_weight="5"
-                android:clickable="true"
-                android:focusable="true"
+                android:clickable="false"
+                android:focusable="false"
                 android:hint="@string/form_bday_hint">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_main_date"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textColor="@color/colorBlack"
-                    android:focusableInTouchMode="false"
-                    android:foreground="?android:attr/selectableItemBackground"
                     android:inputType="date|datetime"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textColor="@color/colorBlack" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:paddingLeft="32dp"
-            android:weightSum="6">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Important Dates - to implement" />
-
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/save_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginRight="32dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:gravity="center"
-            android:enabled="false"
-            android:text="Save" />
 
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

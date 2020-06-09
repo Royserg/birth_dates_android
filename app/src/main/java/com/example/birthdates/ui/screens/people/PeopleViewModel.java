@@ -1,52 +1,44 @@
 package com.example.birthdates.ui.screens.people;
 
-import android.os.Build;
+import android.app.Application;
 
-import androidx.annotation.RequiresApi;
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.birthdates.models.Person;
+import com.example.birthdates.reopsitory.PersonRepository;
 
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
-public class PeopleViewModel extends ViewModel {
+public class PeopleViewModel extends AndroidViewModel {
 
-    private MutableLiveData<List<Person>> people = new MutableLiveData<>();
+    private PersonRepository repository;
+    private LiveData<List<Person>> allPersons;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public PeopleViewModel() {
-
-        people.setValue(getDummyPeople());
+    public PeopleViewModel(@NonNull Application application) {
+        super(application);
+        repository = new PersonRepository(application);
+        allPersons = repository.getAllPersons();
     }
 
-    public LiveData<List<Person>> getPeople() {
-        return people;
+    public void insert(Person person) {
+        repository.insert(person);
     }
 
-    private List<Person> getDummyPeople() {
-        List<Person> personList = new ArrayList<>();
-
-        Calendar calendar = Calendar.getInstance();
-
-        personList.add(new Person("Person 1", calendar.getTime()));
-        personList.add(new Person("Person 2", calendar.getTime()));
-        personList.add(new Person("Person 3", calendar.getTime()));
-        personList.add(new Person("Person 4", calendar.getTime()));
-
-        return personList;
+    public void update(Person person) {
+        repository.update(person);
     }
 
-    public void insert(Person newPerson) {
-        List<Person> empty = new ArrayList<>();
-        List<Person> personList = people.getValue();
-        System.out.println("New person:" + newPerson.toString());
-        System.out.println("list: " + personList);
+    public void delete(Person person) {
+        repository.delete(person);
+    }
 
-        personList.add(newPerson);
-        people.setValue(empty);
+    public void deleteAllPersons(Person person) {
+        repository.deleteAllPersons();
+    }
+
+    public LiveData<List<Person>> getAllPersons() {
+         return allPersons;
     }
 }

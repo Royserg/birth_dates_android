@@ -23,10 +23,11 @@
         <item name="android:windowIsFloating">false</item>
 
         <item name="android:windowBackground">@color/colorWhite</item>
+    </style>
 
-        <!-- TODO: They don't seem to work = Additionally if you want animations when dialog opening -->
-        <item name="android:windowEnterAnimation">@anim/slide_up</item>
-        <item name="android:windowExitAnimation">@anim/slide_down</item>
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 
 

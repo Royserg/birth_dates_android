@@ -31,8 +31,17 @@ public class PeopleFragment extends Fragment {
 
         /* Set Recycler View adapter */
         peopleRecyclerView = root.findViewById(R.id.people_recycler_view);
-        peopleAdapter = new PeopleAdapter(getActivity());
+        peopleAdapter = new PeopleAdapter();
         peopleRecyclerView.setAdapter(peopleAdapter);
+
+        /* Person Row clicked */
+        peopleAdapter.setOnClickListener(person -> {
+            /* Show Edit Dialog */
+//            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+//            AddEditPersonDialog dialog = new AddEditPersonDialog(person);
+//            dialog.show(ft, AddEditPersonDialog.TAG);
+
+        });
 
         return root;
     }
@@ -41,6 +50,6 @@ public class PeopleFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        peopleViewModel.getPeople().observe(getViewLifecycleOwner(), people -> peopleAdapter.submitList(people));
+        peopleViewModel.getAllPersons().observe(getViewLifecycleOwner(), people -> peopleAdapter.submitList(people));
     }
 }
