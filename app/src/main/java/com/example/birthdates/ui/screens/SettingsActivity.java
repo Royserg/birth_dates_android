@@ -24,6 +24,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         // Setup toolbar
         Toolbar toolbar = findViewById(R.id.settings_toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24);
         setSupportActionBar(toolbar);
 
         ActionBar actionBar = getSupportActionBar();
@@ -41,7 +42,6 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-
 //            addPreferencesFromResource(R.xml.root_preferences);
 
         }

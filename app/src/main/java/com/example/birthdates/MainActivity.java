@@ -1,6 +1,7 @@
 package com.example.birthdates;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,11 +12,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.MenuCompat;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.birthdates.ui.components.AddBottomSheetDialog;
 import com.example.birthdates.ui.screens.SettingsActivity;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -36,11 +39,13 @@ public class MainActivity extends AppCompatActivity {
         topToolbar = findViewById(R.id.top_toolbar);
 
         fab = findViewById(R.id.fab);
+        fab.setColorFilter(Color.WHITE);
         fab.setOnClickListener(this::onFabPressed);
 
         // Setting menu in the bottom app bar
         setSupportActionBar(bottomAppBar);
         setSupportActionBar(topToolbar);
+
         // Remove toolbar title
 //        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -88,11 +93,13 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(bottomNav, navController);
     }
-    
+
     public void onFabPressed(View view) {
-//        Snackbar.make(view, "FAB Pressed", Snackbar.LENGTH_LONG)
-//                .setAction("Action", null).show();
-        Toast.makeText(this, "FAB Pressed toast", Toast.LENGTH_SHORT).show();
+        // Show Bottom sheet dialog
+        AddBottomSheetDialog bottomSheet = new AddBottomSheetDialog(this);
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
+        bottomSheet.show(ft, AddBottomSheetDialog.TAG);
     }
 
 }

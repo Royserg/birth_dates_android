@@ -36,13 +36,17 @@ public class PeopleViewModel extends ViewModel {
         personList.add(new Person("Person 2", calendar.getTime()));
         personList.add(new Person("Person 3", calendar.getTime()));
         personList.add(new Person("Person 4", calendar.getTime()));
-        personList.add(new Person("Person 5", calendar.getTime()));
-        personList.add(new Person("Person 6", calendar.getTime()));
-        personList.add(new Person("Person 7", calendar.getTime()));
-        personList.add(new Person("Person 8", calendar.getTime()));
-        personList.add(new Person("Person 9", calendar.getTime()));
-        personList.add(new Person("Person 10", calendar.getTime()));
 
         return personList;
+    }
+
+    public void insert(Person newPerson) {
+        List<Person> empty = new ArrayList<>();
+        List<Person> personList = people.getValue();
+        System.out.println("New person:" + newPerson.toString());
+        System.out.println("list: " + personList);
+
+        personList.add(newPerson);
+        people.setValue(empty);
     }
 }

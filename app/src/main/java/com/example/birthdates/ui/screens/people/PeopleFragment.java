@@ -41,8 +41,6 @@ public class PeopleFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        peopleViewModel.getPeople().observe(getViewLifecycleOwner(), people -> {
-            peopleAdapter.submitList(people);
-        });
+        peopleViewModel.getPeople().observe(getViewLifecycleOwner(), people -> peopleAdapter.submitList(people));
     }
 }
