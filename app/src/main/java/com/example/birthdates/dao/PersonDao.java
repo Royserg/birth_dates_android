@@ -26,6 +26,9 @@ public interface PersonDao {
     @Query("DELETE FROM person_table")
     void deleteAllPersons();
 
+    @Query("SELECT * FROM person_table WHERE id = :id")
+    LiveData<Person> getPerson(int id);
+
     @Query("SELECT * FROM person_table ORDER BY name ASC")
     LiveData<List<Person>> getAllPersons();
 }

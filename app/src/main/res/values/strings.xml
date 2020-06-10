@@ -38,4 +38,6 @@
     <string name="form_bday_hint">Birthday</string>
     <string name="form_description_hint">Description</string>
     <string name="form_date_hint">Date</string>
+    <string name="title_edit">Edit</string>
+    <string name="title_delete">Delete</string>
 </resources>

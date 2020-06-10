@@ -39,7 +39,7 @@ public class LoginFragment extends Fragment {
 
         // Re-inflate appbar with main bottom menu
         navView.getMenu().clear();
-        navView.inflateMenu(R.menu.main_nav_menu);
+        navView.inflateMenu(R.menu.bottom_nav_menu);
 
         findNavController(this).navigate(R.id.navigation_people);
 

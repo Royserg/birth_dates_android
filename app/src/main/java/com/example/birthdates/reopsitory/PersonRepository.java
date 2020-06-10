@@ -37,6 +37,10 @@ public class PersonRepository {
         new DeleteAllPersonsAsyncTask(personDao).execute( );
     }
 
+    public LiveData<Person> getPerson(int id) {
+        return personDao.getPerson(id);
+    }
+
     public LiveData<List<Person>> getAllPersons() {
         return allPersons;
     }
@@ -101,4 +105,19 @@ public class PersonRepository {
             return null;
         }
     }
+
+    private static class GetPersonAsyncTask extends AsyncTask<Integer , Void, LiveData<Person>> {
+        private PersonDao personDao;
+
+        private GetPersonAsyncTask(PersonDao personDao) {
+            this.personDao = personDao;
+        }
+
+
+        @Override
+        protected LiveData<Person> doInBackground(Integer... integers) {
+            return personDao.getPerson(integers[0]);
+        }
+    }
+
 }

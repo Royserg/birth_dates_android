@@ -38,6 +38,10 @@ public class PeopleViewModel extends AndroidViewModel {
         repository.deleteAllPersons();
     }
 
+    public LiveData<Person> getPerson(int id) {
+        return repository.getPerson(id);
+    }
+
     public LiveData<List<Person>> getAllPersons() {
          return allPersons;
     }

@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate Top Toolbar menu
-        getMenuInflater().inflate(R.menu.main_app_menu, menu);
+//        getMenuInflater().inflate(R.menu.main_app_menu, menu);
         // Enable divider between options groups
         MenuCompat.setGroupDividerEnabled(menu, true);
 
