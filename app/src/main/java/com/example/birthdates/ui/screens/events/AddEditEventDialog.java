@@ -1,4 +1,4 @@
-package com.example.birthdates.ui.screens.people;
+package com.example.birthdates.ui.screens.events;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -18,7 +18,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.birthdates.R;
-import com.example.birthdates.models.Person;
+import com.example.birthdates.models.Event;
 import com.example.birthdates.ui.components.DatePickerFragment;
 import com.example.birthdates.utils.Utils;
 import com.google.android.material.textfield.TextInputEditText;
@@ -27,25 +27,27 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 
-public class AddEditPersonDialog extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+public class AddEditEventDialog extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
-    public static String TAG = "FullScreenPersonDialog";
+    public static String TAG = "FullScreenEventDialog";
 
-    private PeopleViewModel peopleViewModel;
+    private EventsViewModel eventsViewModel;
     private Date mainDate;
 
-    private Person person;
+    private Event event;
     private TextInputEditText nameInput;
     private TextInputEditText mainDateInput;
+    private TextInputEditText descriptionInput;
+
     private Button saveButton;
 
     /* === Constructor === */
-    public AddEditPersonDialog() {
+    public AddEditEventDialog() {
 
     }
 
-    public AddEditPersonDialog(Person person) {
-        this.person = person;
+    public AddEditEventDialog(Event event) {
+        this.event = event;
     }
 
     @Override
@@ -61,10 +63,10 @@ public class AddEditPersonDialog extends DialogFragment implements DatePickerDia
         super.onCreateView(inflater, container, savedInstanceState);
 
         /* Get People ViewModel */
-        peopleViewModel =
-                ViewModelProviders.of(this).get(PeopleViewModel.class);
+        eventsViewModel =
+                ViewModelProviders.of(this).get(EventsViewModel.class);
 
-        View root = inflater.inflate(R.layout.add_edit_person_dialog, container, false);
+        View root = inflater.inflate(R.layout.add_edit_event_dialog, container, false);
 
         Toolbar toolbar = root.findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_close_white_24);
@@ -72,9 +74,12 @@ public class AddEditPersonDialog extends DialogFragment implements DatePickerDia
 
         // Name input field
         nameInput = root.findViewById(R.id.input_name);
-        // Bday input field
+        // Date input field
         mainDateInput = root.findViewById(R.id.input_main_date);
         mainDateInput.setOnClickListener(this::handleBdayInputClicked);
+        // Description input field
+        descriptionInput = root.findViewById(R.id.input_description);
+
         // Save button
         saveButton = root.findViewById(R.id.save_button);
         saveButton.setOnClickListener(this::handleSaveButtonClicked);
@@ -83,13 +88,14 @@ public class AddEditPersonDialog extends DialogFragment implements DatePickerDia
         nameInput.addTextChangedListener(nameTextWatcher);
 
         /* Change toolbar title */
-        if (person == null) {
-            toolbar.setTitle("Add Person");
+        if (event == null) {
+            toolbar.setTitle("Add Event");
             mainDate = Calendar.getInstance().getTime();
         } else {
-            toolbar.setTitle("Edit " + person.getName());
-            mainDate = person.getBday();
-            nameInput.setText(person.getName());
+            toolbar.setTitle("Edit " + event.getName());
+            mainDate = event.getDate();
+            nameInput.setText(event.getName());
+            descriptionInput.setText(event.getDescription());
             saveButton.setEnabled(true);
         }
 
@@ -148,8 +154,9 @@ public class AddEditPersonDialog extends DialogFragment implements DatePickerDia
     }
 
     public void handleSaveButtonClicked(View view) {
-        String nameInputText = nameInput.getText().toString();
+        String nameText = nameInput.getText().toString();
         String dateText = mainDateInput.getText().toString();
+        String descriptionText = descriptionInput.getText().toString();
 
         Date newDate = null;
         try {
@@ -158,15 +165,15 @@ public class AddEditPersonDialog extends DialogFragment implements DatePickerDia
             e.printStackTrace();
         }
 
-        Person newPerson = new Person(nameInputText, newDate);
+        Event newEvent = new Event(nameText, descriptionText, newDate);
 
-        if (person == null) {
+        if (event == null) {
             // Saving a new person
-            peopleViewModel.insert(newPerson);
+            eventsViewModel.insert(newEvent);
         } else {
             // Updaing existing person
-            newPerson.setId(person.getId());
-            peopleViewModel.update(newPerson);
+            newEvent.setId(event.getId());
+            eventsViewModel.update(newEvent);
         }
 
         dismiss();

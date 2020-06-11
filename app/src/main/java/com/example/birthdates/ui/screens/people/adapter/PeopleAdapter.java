@@ -2,7 +2,6 @@ package com.example.birthdates.ui.screens.people.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,11 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.birthdates.R;
 import com.example.birthdates.models.Person;
 
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.Calendar;
-
 public class PeopleAdapter extends ListAdapter<Person, PeopleAdapter.PersonViewHolder> {
+
     private OnItemClickListener listener;
 
     public PeopleAdapter() {
@@ -82,31 +77,16 @@ public class PeopleAdapter extends ListAdapter<Person, PeopleAdapter.PersonViewH
             });
         }
 
-        @RequiresApi(api = Build.VERSION_CODES.O)
         public void setData(Person person) {
             nameTextView.setText(person.getName());
 
-            /* http://www.java2s.com/Tutorials/Java_Date_Time/Example/Date/Calculate_the_span_of_time_from_today_until_your_birthday.htm */
-            Calendar c = Calendar.getInstance();
-            c.setTime(person.getBday());
-
-            LocalDate today = LocalDate.now();
-            LocalDate birthday = LocalDate.ofYearDay(c.get(Calendar.YEAR), c.get(Calendar.DAY_OF_YEAR));
-            LocalDate nextBDay = birthday.withYear(today.getYear());
-
-            if (nextBDay.isBefore(today)) {
-                nextBDay = nextBDay.plusYears(1);
-            }
-
-            if (nextBDay.isEqual(today)) {
-                bdayTextView.setText("Happy Bday!!!");
+            if (person.getDaysRemaining() == 0) {
+                bdayTextView.setText("Birthday!!!");
                 bdayTextView.setTextColor(Color.MAGENTA);
                 bdayIcon.setColorFilter(Color.MAGENTA);
             } else {
-                long daysPeriod = ChronoUnit.DAYS.between(today, nextBDay);
-                bdayTextView.setText("in " + daysPeriod + " days");
+                bdayTextView.setText("in " + person.getDaysRemaining() + " days");
             }
-//            bdayTextView.setText(Utils.dateFormat.format(person.getBday().getTime()));
         }
     }
 

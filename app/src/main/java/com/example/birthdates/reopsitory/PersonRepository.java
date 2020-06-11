@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import androidx.lifecycle.LiveData;
 
 import com.example.birthdates.dao.PersonDao;
-import com.example.birthdates.database.PersonDatabase;
+import com.example.birthdates.database.BirthdatesDatabase;
 import com.example.birthdates.models.Person;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class PersonRepository {
     private LiveData<List<Person>> allPersons;
 
     public PersonRepository(Application application) {
-        PersonDatabase database = PersonDatabase.getInstance(application);
+        BirthdatesDatabase database = BirthdatesDatabase.getInstance(application);
         personDao = database.personDao();
         allPersons = personDao.getAllPersons();
     }
@@ -43,6 +43,10 @@ public class PersonRepository {
 
     public LiveData<List<Person>> getAllPersons() {
         return allPersons;
+    }
+
+    public LiveData<List<Person>> getBirthdayPersons() {
+        return personDao.getBirthdayPersons();
     }
 
     /**

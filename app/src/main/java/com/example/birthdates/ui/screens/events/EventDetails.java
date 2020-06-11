@@ -1,4 +1,4 @@
-package com.example.birthdates.ui.screens.people;
+package com.example.birthdates.ui.screens.events;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,17 +17,18 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
 import com.example.birthdates.R;
-import com.example.birthdates.models.Person;
+import com.example.birthdates.models.Event;
 import com.example.birthdates.ui.components.NoBottomNavigationFragment;
 import com.example.birthdates.utils.Utils;
 import com.google.android.material.textfield.TextInputEditText;
 
-public class PersonDetails extends NoBottomNavigationFragment {
+public class EventDetails extends NoBottomNavigationFragment {
 
-    PeopleViewModel peopleViewModel;
-    private TextInputEditText mainDateInput;
+    EventsViewModel eventsViewModel;
     private TextInputEditText nameInput;
-    Person currentPerson;
+    private TextInputEditText descriptionInput;
+    private TextInputEditText mainDateInput;
+    Event currentEvent;
 
 
     @Override
@@ -44,14 +45,15 @@ public class PersonDetails extends NoBottomNavigationFragment {
         /* Call super implementing hiding bottom Nav bar */
         super.onCreateView(inflater, container, savedInstanceState);
 
-        View root = inflater.inflate(R.layout.fragment_person_details, container, false);
+        View root = inflater.inflate(R.layout.fragment_event_details, container, false);
 
         /* Get ViewModel */
-        peopleViewModel =
-                ViewModelProviders.of(this).get(PeopleViewModel.class);
+        eventsViewModel =
+                ViewModelProviders.of(this).get(EventsViewModel.class);
 
-        mainDateInput = root.findViewById(R.id.input_main_date);
         nameInput = root.findViewById(R.id.input_name);
+        descriptionInput = root.findViewById(R.id.input_description);
+        mainDateInput = root.findViewById(R.id.input_main_date);
 
         Toolbar toolbar = getActivity().findViewById(R.id.top_toolbar);
         toolbar.setNavigationOnClickListener(view -> Navigation.findNavController(root).navigateUp());
@@ -66,13 +68,14 @@ public class PersonDetails extends NoBottomNavigationFragment {
         super.onViewCreated(view, savedInstanceState);
 
         if (getArguments() != null) {
-            PersonDetailsArgs args = PersonDetailsArgs.fromBundle(getArguments());
+            EventDetailsArgs args = EventDetailsArgs.fromBundle(getArguments());
             int id = args.getId();
 
-            peopleViewModel.getPerson(id).observe(getViewLifecycleOwner(), person -> {
-                currentPerson = person;
-                nameInput.setText(person.getName());
-                mainDateInput.setText(Utils.dateFormat.format(person.getBday()));
+            eventsViewModel.getEvent(id).observe(getViewLifecycleOwner(), event -> {
+                currentEvent = event;
+                nameInput.setText(event.getName());
+                descriptionInput.setText(event.getDescription());
+                mainDateInput.setText(Utils.dateFormat.format(event.getDate()));
             });
         }
     }
@@ -92,7 +95,7 @@ public class PersonDetails extends NoBottomNavigationFragment {
                 showEditScreen();
                 break;
             case R.id.details_delete:
-                deletePerson();
+                deleteEvent();
                 break;
         }
 
@@ -101,22 +104,21 @@ public class PersonDetails extends NoBottomNavigationFragment {
 
     private void showEditScreen() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        AddEditPersonDialog dialog = new AddEditPersonDialog(currentPerson);
-        dialog.show(ft, AddEditPersonDialog.TAG);
+        AddEditEventDialog dialog = new AddEditEventDialog(currentEvent);
+        dialog.show(ft, AddEditEventDialog.TAG);
     }
 
-    private void deletePerson() {
+    private void deleteEvent() {
         /*https://stackoverflow.com/a/5127506/8421735*/
         new AlertDialog.Builder(getActivity())
-            .setTitle("Are you sure?")
-            .setMessage("Do you want to delete " + currentPerson.getName())
-            .setIcon(R.drawable.ic_delete_red_24)
-            .setPositiveButton(android.R.string.yes, (dialog, which) -> {
-                peopleViewModel.delete(currentPerson);
-                Navigation.findNavController(getView()).navigateUp();
-            })
-            .setNegativeButton(android.R.string.no, null)
-            .show();
+                .setTitle("Are you sure?")
+                .setMessage("Do you want to delete " + currentEvent.getName())
+                .setIcon(R.drawable.ic_delete_red_24)
+                .setPositiveButton(android.R.string.yes, (dialog, which) -> {
+                    eventsViewModel.delete(currentEvent);
+                    Navigation.findNavController(getView()).navigateUp();
+                })
+                .setNegativeButton(android.R.string.no, null)
+                .show();
     }
-
 }

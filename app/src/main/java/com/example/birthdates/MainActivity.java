@@ -1,12 +1,10 @@
 package com.example.birthdates;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +17,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.birthdates.ui.components.AddBottomSheetDialog;
-import com.example.birthdates.ui.screens.SettingsActivity;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -46,16 +43,11 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(bottomAppBar);
         setSupportActionBar(topToolbar);
 
-        // Remove toolbar title
-//        getSupportActionBar().setDisplayShowTitleEnabled(false);
-
         initializeNavigation();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate Top Toolbar menu
-//        getMenuInflater().inflate(R.menu.main_app_menu, menu);
         // Enable divider between options groups
         MenuCompat.setGroupDividerEnabled(menu, true);
 
@@ -69,11 +61,8 @@ public class MainActivity extends AppCompatActivity {
 
         switch (id) {
             case R.id.menu_settings:
-                Intent settingsIntent = new Intent(this, SettingsActivity.class);
-                startActivity(settingsIntent);
-                break;
-            case R.id.menu_login:
-                Toast.makeText(this, "Login Button pressed", Toast.LENGTH_SHORT).show();
+                Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.navigation_settings);
+
                 break;
         }
 
@@ -102,4 +91,13 @@ public class MainActivity extends AppCompatActivity {
         bottomSheet.show(ft, AddBottomSheetDialog.TAG);
     }
 
+    @Override
+    public void onBackPressed() {
+        System.out.println("Back Button Pressed");
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
+    }
 }

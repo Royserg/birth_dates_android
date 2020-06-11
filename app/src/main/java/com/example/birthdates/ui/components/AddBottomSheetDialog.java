@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.birthdates.MainActivity;
 import com.example.birthdates.R;
+import com.example.birthdates.ui.screens.events.AddEditEventDialog;
 import com.example.birthdates.ui.screens.people.AddEditPersonDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -55,7 +56,7 @@ public class AddBottomSheetDialog extends BottomSheetDialogFragment {
         // Close Bottom Sheet Dialog
         dismiss();
 
-//        openFullScreenDialog(FullScreenDialog.Type.EVENT);
+        openFullScreenDialog(new AddEditEventDialog());
     }
 
     private void openFullScreenDialog(DialogFragment dialog) {

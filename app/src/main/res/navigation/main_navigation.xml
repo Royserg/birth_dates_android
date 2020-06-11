@@ -9,7 +9,26 @@
         android:id="@+id/navigation_home"
         android:name="com.example.birthdates.ui.screens.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigate_home_to_event_details"
+            app:destination="@id/navigation_event_details"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_right"
+            app:popUpTo="@id/navigation_home"
+            app:popEnterAnim="@anim/enter_from_right"
+            app:popExitAnim="@anim/exit_to_right"
+            app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_navigate_home_to_person_details"
+            app:destination="@id/navigation_person_details"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_right"
+            app:popUpTo="@id/navigation_home"
+            app:popEnterAnim="@anim/enter_from_right"
+            app:popExitAnim="@anim/exit_to_right"
+            app:launchSingleTop="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_people"
@@ -32,7 +51,17 @@
         android:id="@+id/navigation_events"
         android:name="com.example.birthdates.ui.screens.events.EventsFragment"
         android:label="@string/title_events"
-        tools:layout="@layout/fragment_events" />
+        tools:layout="@layout/fragment_events" >
+        <action
+            android:id="@+id/action_navigate_to_event_details"
+            app:destination="@id/navigation_event_details"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_right"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/enter_from_right"
+            app:popExitAnim="@anim/exit_to_right"
+            app:popUpTo="@id/navigation_events" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_person_details"
@@ -45,5 +74,23 @@
             app:argType="integer"
             android:defaultValue="-1" />
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_event_details"
+        android:name="com.example.birthdates.ui.screens.events.EventDetails"
+        android:label="EventDetails"
+        tools:layout="@layout/fragment_event_details"
+        >
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.example.birthdates.ui.screens.settings.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/settings_layout" />
 
 </navigation>

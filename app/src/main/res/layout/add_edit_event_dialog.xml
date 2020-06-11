@@ -7,19 +7,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorWhite">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <LinearLayout
         android:id="@+id/linear_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:gravity="top"
+        android:gravity="center"
         android:orientation="vertical">
 
         <!-- Row - Name -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="86dp"
             android:weightSum="6">
 
             <ImageView
@@ -27,10 +36,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_person_black_24" />
+                app:srcCompat="@drawable/ic_event_name_black_24" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_layout_name"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
@@ -42,16 +52,14 @@
                     android:id="@+id/input_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/colorWhite"
-                    android:editable="false"
                     android:hint="@string/form_name_hint"
-                    android:inputType="none"
+                    android:inputType="text"
                     android:singleLine="true"
                     android:textColor="@color/colorBlack" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
-        <!-- Row - bday -->
+        <!-- Row - Description -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,30 +71,77 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_cake_black_24" />
+                app:srcCompat="@drawable/ic_description_black_24" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/input_layout_main_date"
+                android:id="@+id/input_layout_description"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
                 android:layout_weight="5"
-                android:hint="@string/form_bday_hint"
-                >
+                android:hint="@string/form_description_hint">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/input_main_date"
+                    android:id="@+id/input_description"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/colorWhite"
-                    android:editable="false"
-                    android:inputType="none"
+                    android:inputType="text"
                     android:singleLine="true"
                     android:textColor="@color/colorBlack" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
+        <!-- Row - date -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:weightSum="6">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/ic_add_event_black_24" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_main_date"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_weight="5"
+                android:clickable="true"
+                android:focusable="true"
+                android:hint="@string/form_date_hint">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input_main_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:focusableInTouchMode="false"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:inputType="date|datetime"
+                    android:singleLine="true"
+                    android:textColor="@color/colorBlack" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginRight="32dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:enabled="false"
+            android:gravity="center"
+            android:text="Save" />
 
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

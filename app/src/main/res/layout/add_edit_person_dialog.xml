@@ -74,7 +74,7 @@
                 app:srcCompat="@drawable/ic_cake_black_24" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/input_layout_bday"
+                android:id="@+id/input_layout_main_date"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

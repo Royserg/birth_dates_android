@@ -10,22 +10,25 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.birthdates.dao.EventDao;
 import com.example.birthdates.dao.PersonDao;
+import com.example.birthdates.models.Event;
 import com.example.birthdates.models.Person;
 
 import java.util.Calendar;
 
-@Database(entities = {Person.class}, version = 1 )
+@Database(entities = {Person.class, Event.class}, version = 1 )
 @TypeConverters({Converters.class})
-public abstract class PersonDatabase extends RoomDatabase {
+public abstract class BirthdatesDatabase extends RoomDatabase {
 
-    private static PersonDatabase instance;
+    private static BirthdatesDatabase instance;
 
     public abstract PersonDao personDao();
+    public abstract EventDao eventDao();
 
-    public static synchronized PersonDatabase getInstance(Context ctx) {
+    public static synchronized BirthdatesDatabase getInstance(Context ctx) {
         if (instance == null) {
-            instance = Room.databaseBuilder(ctx.getApplicationContext(),  PersonDatabase.class, "person_database")
+            instance = Room.databaseBuilder(ctx.getApplicationContext(),  BirthdatesDatabase.class, "person_database")
                     .fallbackToDestructiveMigration()
                     .addCallback(roomCallback)
                     .build();
@@ -43,17 +46,19 @@ public abstract class PersonDatabase extends RoomDatabase {
 
     private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
         private PersonDao personDao;
+        private EventDao eventDao;
 
-        public PopulateDbAsyncTask(PersonDatabase db) {
+        public PopulateDbAsyncTask(BirthdatesDatabase db) {
             this.personDao = db.personDao();
+            this.eventDao = db.eventDao();
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
             Calendar calendar = Calendar.getInstance();
 
-            personDao.insert(new Person("John Doe", calendar.getTime()));
-            personDao.insert(new Person("Natalie", calendar.getTime()));
+            personDao.insert(new Person("Sample Person", calendar.getTime()));
+            eventDao.insert(new Event("1st Event", "Sample Event", calendar.getTime()));
 
             return null;
         }

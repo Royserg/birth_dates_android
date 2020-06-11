@@ -2,14 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <group android:id="@+id/general">
-        <item
-            android:id="@+id/menu_login"
-            android:icon="@drawable/ic_login"
-            android:title="@string/title_login"
-            />
-    </group>
-
     <group android:id="@+id/settings">
         <item
             android:id="@+id/menu_settings"
